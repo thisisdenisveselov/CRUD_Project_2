@@ -5,11 +5,28 @@
     <title>Person</title>
 </head>
 <body>
-<p th:text="${person.getName()}">VALUE</p>
-<p th:text="${person.getId()}">VALUE</p>
-<p th:text="${person.getAge()}">VALUE</p>
+<p th:text="${person.getName() + ', ' + person.getBirthYear()}">VALUE</p>
 
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
+<div th:if="${borrowedBooks.isEmpty()}">
+    <p>The person hasn't borrowed any books yet</p>
+</div>
+<div th:unless="${borrowedBooks.isEmpty()}">
+    <br/>
+    <hr/>
+    <p>Books:</p>
+    <div  th:each="book : ${borrowedBooks}">
+        <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPublishingYear()}">borrowed book</p>
+    </div>
+</div>
+
+<br/>
+<hr/>
+
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="Edit"/>
+</form>
+
+<br/>
 
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     <input type="submit" value="Delete"/>

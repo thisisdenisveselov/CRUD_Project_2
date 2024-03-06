@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.veselov.crud1try2.dao.BookDAO;
 import ru.veselov.crud1try2.dao.PersonDAO;
 import ru.veselov.crud1try2.models.Person;
 import ru.veselov.crud1try2.util.PersonValidator;
@@ -16,6 +17,11 @@ public class PeopleController {
 
     private final PersonDAO personDAO;
     private final PersonValidator personValidator;
+
+/*    public PeopleController(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }*/
+
 
     public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
@@ -33,6 +39,7 @@ public class PeopleController {
     public String show(@PathVariable("id") int id, Model model) {
         //get one person by id from DAO and send him to the view
         model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("borrowedBooks", personDAO.showBorrowedBooks(id));
         return "people/show";
     }
 

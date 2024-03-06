@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Book</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/books}" th:object="${book}">
+    <!--th:action="@{/people}" - address, where data will be sent from this form (action="/people" without thymeleaf)-->
+    <!--th:object="${person}" - new empty person that had been passed to this form in controller-->
+    <label for="name">Enter name: </label> <!-- for="name"  ==  id="name" (in input) -->
+    <input type="text" th:field="*{name}" id="name"/>  <!-- th:field="*{name}" - use field of class Person. attribute "id" - for label creation-->
+    <!--<div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>--> <!--text "Name error" will never be seen. it is hidden or replaced by thymeleaf with our custom text for particular error-->
+    <br/>
+    <label for="author">Enter author: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <!--<div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>-->
+    <br/>
+    <label for="publishingYear">Enter publishing year: </label>
+    <input type="text" th:field="*{publishingYear}" id="publishingYear"/>
+    <!--<div style="color:red" th:if="${#fields.hasErrors('publishingYear')}" th:errors="*{publishingYear}">Publishing year error</div>-->
+    <br/>
+    <input type="submit" value="Create!">
+</form>
+
+</body>
+</html>
