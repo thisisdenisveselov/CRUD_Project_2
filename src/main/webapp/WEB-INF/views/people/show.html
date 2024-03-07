@@ -10,7 +10,7 @@
 <div th:if="${borrowedBooks.isEmpty()}">
     <p>The person hasn't borrowed any books yet</p>
 </div>
-<div th:unless="${borrowedBooks.isEmpty()}">
+<div th:if="${!borrowedBooks.isEmpty()}">
     <br/>
     <hr/>
     <p>Books:</p>

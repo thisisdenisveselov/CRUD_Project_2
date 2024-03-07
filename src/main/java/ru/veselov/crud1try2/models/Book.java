@@ -1,11 +1,20 @@
 package ru.veselov.crud1try2.models;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Book {
     private int id;
     private int personId;
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
     private String name;
+    @NotEmpty(message = "Author should not be empty")
+    @Size(min = 2, max = 50, message = "Author should be between 2 and 50 characters")
     private String author;
-    private  int publishingYear;
+    @Min(value = 1, message = "Publishing year should be greater than 0")
+    private int publishingYear;
 
     public Book() {
     }

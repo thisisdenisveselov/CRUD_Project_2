@@ -25,18 +25,13 @@ public class PersonDAO {
                 //new BeanPropertyRowMapper<>(Person.class));
     }
 
-/*    public Optional<Person> show(String email) {
-        return jdbcTemplate.query("SELECT * FROM person WHERE email = ?", new Object[]{email}, new BeanPropertyRowMapper<>(Person.class))
-                .stream().findAny();
-    }*/
-
     public Person show(int id) {
         return jdbcTemplate.query("SELECT * FROM person WHERE person_id = ?", new Object[]{id}, new PersonMapper())
                 .stream().findAny().orElse(null);
     }
 
     public List<Book> showBorrowedBooks(int id) {
-        return jdbcTemplate.query("SELECT book_id, book.name, author, publishing_year FROM book JOIN person " +
+        return jdbcTemplate.query("SELECT * FROM book JOIN person " +
                 "ON book.person_id = person.person_id WHERE person.person_id = ?", new Object[]{id}, new BookMapper());
     }
 
@@ -53,6 +48,11 @@ public class PersonDAO {
     public void delete(int id) {
 
         jdbcTemplate.update("DELETE FROM person WHERE person_id=?", id);
+    }
+
+    public Optional<Person> getFullName(String name) {
+        return jdbcTemplate.query("SELECT * FROM person WHERE full_name = ?", new Object[]{name}, new PersonMapper())
+                .stream().findAny();
     }
 
 
