@@ -5,7 +5,7 @@
     <title>Person</title>
 </head>
 <body>
-<p th:text="${person.getName() + ', ' + person.getBirthYear()}">VALUE</p>
+<p th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</p>
 
 <div th:if="${borrowedBooks.isEmpty()}">
     <p>The person hasn't borrowed any books yet</p>
@@ -15,7 +15,7 @@
     <hr/>
     <p>Books:</p>
     <div  th:each="book : ${borrowedBooks}">
-        <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPublishingYear()}">borrowed book</p>
+        <p th:style="${book.isExpired()}?'color:red':'color:black'" th:if="${book}" th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPublishingYear()}">borrowed book</p>
     </div>
 </div>
 

@@ -9,9 +9,9 @@
 <form th:method="POST" th:action="@{/people}" th:object="${person}">
     <!--th:action="@{/people}" - address, where data will be sent from this form (action="/people" without thymeleaf)-->
     <!--th:object="${person}" - new empty person that had been passed to this form in controller-->
-    <label for="name">Enter name: </label> <!-- for="name"  ==  id="name" (in input) -->
-    <input type="text" th:field="*{name}" id="name"/>  <!-- th:field="*{name}" - use field of class Person. attribute "id" - for label creation-->
-    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div> <!--text "Name error" will never be seen. it is hidden or replaced by thymeleaf with our custom text for particular error-->
+    <label for="fullName">Enter full name: </label> <!-- for="name"  ==  id="name" (in input) -->
+    <input type="text" th:field="*{fullName}" id="fullName"/>  <!-- th:field="*{name}" - use field of class Person. attribute "id" - for label creation-->
+    <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name error</div> <!--text "Name error" will never be seen. it is hidden or replaced by thymeleaf with our custom text for particular error-->
     <br/>
     <label for="birthYear">Enter birth year: </label>
     <input type="text" th:field="*{birthYear}" id="birthYear"/>

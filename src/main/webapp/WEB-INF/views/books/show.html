@@ -7,21 +7,21 @@
 <body>
 <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPublishingYear()}">VALUE</p>
 
-<div th:if="${book.getPersonId() == 0}">
+<div th:if="${people}">
     <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">  <!--POST possible-->
         <p>This book is available</p>
         <label for="personList">Choose person for assignment:</label>
         <select th:object="${person}" th:field="*{id}" id="personList">
-            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"></option>
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
         </select>
 
         <input type="submit" value="Assign book">
     </form>
 </div>
-<div th:if="${book.getPersonId() > 0}">
+<div th:if="${assignedPerson}">
     <form th:method="PATCH" th:action="@{/books/{id}/free(id=${book.getId()})}">  <!--POST possible-->
         <label for="assignedPerson">The book assigned to: </label>
-        <p th:text="${assignedPerson.getName()}" id="assignedPerson">VALUE</p>
+        <p th:text="${assignedPerson.getFullName()}" id="assignedPerson">VALUE</p>
 
         <input type="submit" value="Free book">
     </form>

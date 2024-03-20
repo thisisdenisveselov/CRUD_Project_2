@@ -1,13 +1,12 @@
-package ru.veselov.crud1try2.dao;
+package ru.veselov.project2.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
-import ru.veselov.crud1try2.models.Book;
+import ru.veselov.project2.models.Book;
 
 import java.util.List;
 
-@Component
+//@Component
 public class BookDAO {
 
     private final JdbcTemplate jdbcTemplate;
