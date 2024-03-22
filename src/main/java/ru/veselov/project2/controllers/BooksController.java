@@ -11,8 +11,6 @@ import ru.veselov.project2.services.PeopleService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 @Controller
 @RequestMapping("/books")
@@ -30,14 +28,10 @@ public class BooksController {
                         @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
                         @RequestParam(value = "sort_by_year", required = false) Boolean sortByYear,
                         Model model) {
-        if (page != null && booksPerPage != null && sortByYear != null && sortByYear)
-            model.addAttribute("books", booksService.findAll(page, booksPerPage, sortByYear));
-        else if (page != null && booksPerPage != null)
-            model.addAttribute("books", booksService.findAll(page, booksPerPage));
-        else if (sortByYear != null && sortByYear)
+        if (page == null || booksPerPage == null)
             model.addAttribute("books", booksService.findAll(sortByYear));
         else
-            model.addAttribute("books", booksService.findAll());
+            model.addAttribute("books", booksService.findAll(page, booksPerPage, sortByYear));
 
         return "books/index";
     }
@@ -108,11 +102,10 @@ public class BooksController {
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam(value = "prompt", required = false) String prompt, Model model) {
-        if (prompt != null) {
-            List<Book> books = booksService.findOne(prompt);
-            model.addAttribute("books", books);
-        }
+    public String search(@RequestParam(value = "query", required = false) String query, Model model) {
+        if (query != null)
+            model.addAttribute("books", booksService.findOne(query));
+
         return "books/search";
     }
 }

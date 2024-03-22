@@ -15,7 +15,8 @@
     <hr/>
     <p>Books:</p>
     <div  th:each="book : ${borrowedBooks}">
-        <p th:style="${book.isExpired()}?'color:red':'color:black'" th:if="${book}" th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPublishingYear()}">borrowed book</p>
+        <p th:style="${book.isExpired()}?'color:red':'color:black'" th:if="${book}"
+           th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getPublishingYear()}">borrowed book</p>
     </div>
 </div>
 

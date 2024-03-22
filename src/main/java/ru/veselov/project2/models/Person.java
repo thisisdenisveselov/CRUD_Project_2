@@ -21,7 +21,7 @@ public class Person {
     @Min(value = 1850, message = "Birth year should be greater than 1850")
     private int birthYear;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "owner")
     private List<Book> books;
 
     public Person() {

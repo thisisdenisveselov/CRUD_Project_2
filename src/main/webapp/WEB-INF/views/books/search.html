@@ -5,9 +5,9 @@
     <title>Search book</title>
 </head>
 <body>
-    <form th:method="GET" th:action="@{/books/search/}" >
-        <label for="searchQuery">Enter search query: </label>
-        <input type="text" th:name="prompt" id="searchQuery"/>
+    <form th:method="GET" th:action="@{/books/search}" >
+        <label for="query">Enter search query: </label>
+        <input type="text" th:name="query" id="query"/>
         <!--<div style="color:red" th:if="${#fields.hasErrors('publishingYear')}" th:errors="*{publishingYear}">Search query error</div>-->
         <br/>
         <input type="submit" value="Search!">

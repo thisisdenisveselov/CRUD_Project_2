@@ -97,10 +97,6 @@ public class Book {
         BorrowedAt = borrowedAt;
     }
 
-    public boolean isExpired() {
-        return expired;
-    }
-
     public void setExpired(boolean expired) {
         this.expired = expired;
     }
